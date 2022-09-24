@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  authentication:
+    build: .
+    command: gunicorn -w 4 -b 0.0.0.0:8000 main:app --reload
+    ports:
+      - "8080:8000"
+    volumes:
+      - ./:/app
+    env_file:
+      - ./.env
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - ~/apps/mongo:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=github_clone
+      - MONGO_INITDB_ROOT_PASSWORD=github_clone
+
+
+volumes:
+  app:
+  mongodb:
