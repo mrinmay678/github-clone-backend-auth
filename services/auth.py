@@ -15,9 +15,8 @@ class AuthenticationService:
                 UserDocument.objects.get(phone=phone)
         except UserDocument.DoesNotExist:
             UserDocument.objects.create(
-                email=email if request.data.get("email") else None
-                phone=phone if request.data.get("phone") else None
-                password
+                email=email if request.data.get("email") else None,
+                phone=phone if request.data.get("phone") else None,
             )
 
 

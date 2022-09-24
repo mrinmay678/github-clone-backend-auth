@@ -1,3 +1,4 @@
+from .error_handling import get_exc
 from .config import MONGO_USERNAME, MONGO_PASSWORD, MONGO_HOST, MONGO_PORT, MONGO_DB
 from flask_restful import Api
 from utils.response import Response
@@ -12,7 +13,7 @@ class ExtendedAPI(Api):
         """It helps preventing writing unnecessary
         try/except block though out the application
         """
-        message, code = self.get_exc(error)
+        message, code = get_exc(error)
         return Response.error(message, code)
 
 

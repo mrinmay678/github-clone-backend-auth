@@ -1,14 +1,14 @@
 class Response:
 
     @classmethod
-    def success(cls, data: dict = None, code: int = None):
+    def success(cls, data: dict = None):
         res: dict = {
             "status": True,
             "message": "Success"
         }
         if data:
             res["data"] = data
-        return res, code
+        return res
 
     @classmethod
     def error(cls, message: str, code: int):

@@ -1,6 +1,5 @@
 from flask import request
 from flask_restful import Resource
-from utils.response import Response
 
 class Authentication(Resource):
 
@@ -13,8 +12,8 @@ class Authentication(Resource):
 
     def post(self, service: str):
         if service == "register":
-            return Response.success(self.register(), 201)
+            return self.register(), 201
         elif service == "login":
-            return Response.success(self.login(), 200)
+            return self.login(), 200
         else:
             raise Exception("Service Not Found", 404)
